@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
+const url = require("url");
 const recursive = require("recursive-readdir");
 const mm = require("music-metadata");
 const axios = require("axios");
@@ -24,14 +25,15 @@ const createWindow = () => {
     height: 900,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    icon: path.join(__dirname, "icons/icon256x256.png")
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
@@ -142,7 +144,6 @@ const getSpotifyToken = (id, secret) => {
     }
   })
     .then(function(response) {
-      console.log(response.data);
       return response.data.access_token;
     })
     .catch(function(error) {});

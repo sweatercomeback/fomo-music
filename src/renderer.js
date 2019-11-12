@@ -3,6 +3,7 @@ const mainProcess = remote.require("./index");
 
 let fileSystemReport;
 let spotifyReport = {};
+const autoFetch = true;
 
 //DIRECTORY
 const $setDirButton = document.getElementById("set-directory");
@@ -27,7 +28,7 @@ function buildAristId(artist) {
 //Directory Chosen
 ipcRenderer.on("set-directory", setCurrentDirectory);
 function setCurrentDirectory(event, dir) {
-  $currentDirectory.innerHTML = `looking in: ${dir}`;
+  $currentDirectory.innerHTML = `Looking in: ${dir}`;
   mainProcess.readDirectory(dir);
 }
 
@@ -51,20 +52,28 @@ function processReport(event, report) {
       <h3>${a}</h3><ul>${albums.join("")}</ul>
     </div>
       <div id="spotify_${buildAristId(a)}">
-      <button data-artist="${a}" class="fetch-from-spotify">Fetch From Spotify</button>
+      ${
+        autoFetch
+          ? `<img src="${__dirname + "/loading.gif"}" />`
+          : `<button data-artist="${a}" class="fetch-from-spotify">Fetch From Spotify</button>`
+      }
       </div>
     </div>`;
   });
   $artistList.innerHTML = `${header}${artists.join("")}`;
 
-  // report.artists.forEach(a => {
-  //   mainProcess.getAlbumListFromApi(a);
-  // });
+  setTimeout(() => {
+    if (autoFetch) {
+      report.artists.forEach(a => {
+        mainProcess.getAlbumListFromApi(a);
+      });
+    }
+  }, 2000);
 
-  const buttons = document.getElementsByClassName("fetch-from-spotify");
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", fetchFromSpotify);
-  }
+  // const buttons = document.getElementsByClassName("fetch-from-spotify");
+  // for (let i = 0; i < buttons.length; i++) {
+  //   buttons[i].addEventListener("click", fetchFromSpotify);
+  // }
 }
 
 //SPOTIFY REPORT
