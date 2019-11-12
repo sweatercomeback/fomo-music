@@ -5,4 +5,29 @@ body {
   max-width: 38rem;
   padding: 2rem;
   background: black;
+  color: white;
+}
+
+.artist-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px white;
+}
+
+.owned {
+  text-decoration: line-through;
+}
+
+.album-album {
+  color: blueviolet;
+}
+
+.album-single {
+  color: lightblue;
+}
+
+.album-compilation {
+  color: olivedrab;
 }

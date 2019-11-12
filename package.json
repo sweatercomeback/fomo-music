@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "eslint src --color"
   },
   "keywords": [],
   "author": {
@@ -45,7 +45,23 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "axios": "^0.19.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "dotenv": "^8.2.0",
+    "electron-compile": "^6.4.4",
+    "electron-squirrel-startup": "^1.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "music-metadata": "^4.8.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "recursive-readdir": "^2.2.2",
+    "spotify-web-api-node": "^4.0.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.45",
