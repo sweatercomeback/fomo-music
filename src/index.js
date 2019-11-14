@@ -26,7 +26,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true
     },
-    icon: path.join(__dirname, "icons/icon256x256.png")
+    icon: __dirname + "/../icons/icon.png"
   });
 
   // and load the index.html of the app.
